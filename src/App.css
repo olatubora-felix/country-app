@@ -1,0 +1,162 @@
+:root {
+  --Dark-Blue: hsl(209, 23%, 22%);
+  --Very-Dark-Blue: hsl(207, 26%, 17%);
+  --Very-Dark: hsl(200, 15%, 8%);
+  --Dark-Gray: hsl(0, 0%, 52%);
+  --Very-Light-Gray: hsl(0, 0%, 98%);
+  --White: hsl(0, 0%, 100%);
+  --shadow-md: 0px 1px 5px 0px rgba(0, 0, 0, 0.13);
+  --shadow-lg: 0px -1px 5px -1px rgba(0, 0, 0, 0.75);
+}
+
+/* Utils */
+.h4 {
+  color: var(--Dark-Blue);
+  margin: 20px 0px;
+}
+
+.span {
+  color: var(--Dark-Gray);
+  margin-left: 10px;
+}
+
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.d-none {
+  display: none;
+}
+
+.bg-light {
+  background-color: var(--Very-Light-Gray);
+  transition: all 2ms ease-in-out;
+}
+
+.bg-dark {
+  background-color: var(--Very-Dark-Blue);
+  transition: all 2ms ease-in-out;
+}
+
+.bg-input {
+  background-color: var(--Very-Dark);
+}
+.text-light {
+  color: var(--White);
+}
+
+.text-dark {
+  color: var(--Dark-Blue);
+}
+
+body {
+  background-color: var(--Very-Light-Gray);
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.navbar {
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+}
+
+.navbar .navbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.navbar-header .navbar-iconwrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.navbar-header .navbar-header__text {
+  font-size: 16px;
+}
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  color: rgb(45, 126, 45);
+}
+
+.error-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.error {
+  height: 100vh;
+  color: #fc1035;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+}
+
+.item {
+  width: 100%;
+}
+
+.item .img-wrapper {
+  width: 100%;
+  object-fit: contain;
+}
+
+.item .img-wrapper img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.item .item-body {
+  padding: 20px;
+}
+
+.item-body .item-body--heading {
+  font-size: 24px;
+  color: var(--Very-Dark-Blue);
+  margin-bottom: 16px;
+}
+
+.item-body .item-body--text {
+  font-size: 16px;
+  color: var(--Dark-Gray);
+  margin: 5px 0px;
+}
+
+@media (max-width: 768px) {
+  /* .container {
+    width: 100%;
+    padding: 0px 10px;
+  } */
+  .search {
+    flex-direction: column;
+  }
+
+  .select-country {
+    width: 100%;
+  }
+
+  .search-wrapper {
+    margin-bottom: 12px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
