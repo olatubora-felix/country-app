@@ -51,8 +51,6 @@ const CountryRegion = (props: { darkMode: boolean }) => {
     <Main darkMode={props.darkMode} bg="home">
       <>
         <Searchbar
-          searchCountry={searchCountry}
-          setSearchCountry={setSearchCountry}
           selectRegion={selectRegion}
           setSelectRegion={setSelectRegion}
           darkMode={props.darkMode}

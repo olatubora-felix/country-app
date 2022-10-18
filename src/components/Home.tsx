@@ -1,55 +1,21 @@
-import axios from "axios";
-import { Fragment, useEffect, useState } from "react";
-import { fetchApi } from "../api/FetchApi";
+import { Fragment, useContext, useState } from "react";
 import Container from "../utils/Container";
 import Searchbar from "./Searchbar";
 import ItemList from "./ItemList";
 import Loader from "./Loader";
 import Error from "./Error";
 import Main from "../utils/Main";
+import CountryContext from "../store/CountryContext";
 
 const Home = (props: { darkMode: boolean }) => {
-  console.log("hello", props.darkMode);
-  const [countries, setCountry] = useState([]);
-  const [searchCountry, setSearchCountry] = useState("");
   const [selectRegion, setSelectRegion] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [getError, setError] = useState("");
-
-  useEffect(() => {
-    const getCountry = async () => {
-      setLoading(true);
-
-      try {
-        const res = await axios(
-          searchCountry ? fetchApi(`name/${searchCountry}`) : fetchApi(`/all`)
-        );
-
-        if (res.data) {
-          setCountry(res.data);
-          setLoading(false);
-        }
-      } catch (error: any) {
-        setLoading(true);
-        setTimeout(() => {
-          if (error.response.status === 404) {
-            setError(error.request.statusText);
-          }
-          setLoading(false);
-        }, 5000);
-      }
-    };
-
-    getCountry();
-  }, [searchCountry]);
-
+  const ctx = useContext(CountryContext);
+  const { loading, getError, countries } = ctx;
   return (
     <>
       <Main darkMode={props.darkMode} bg="home">
         <div>
           <Searchbar
-            searchCountry={searchCountry}
-            setSearchCountry={setSearchCountry}
             selectRegion={selectRegion}
             setSelectRegion={setSelectRegion}
             darkMode={props.darkMode}

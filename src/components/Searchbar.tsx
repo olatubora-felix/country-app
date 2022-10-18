@@ -1,52 +1,59 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Container from "../utils/Container";
 import { BiSearch } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import "./Searchbar.css";
+import CountryContext from "../store/CountryContext";
 
 type SearchProps = {
-  searchCountry?: string;
   selectRegion?: string;
-  setSearchCountry: (e: any) => void;
   setSelectRegion: (e: any) => void;
   darkMode?: boolean;
 };
 
 const Searchbar = (props: SearchProps) => {
+  const ctx = useContext(CountryContext);
+  const {
+    handleSubmit,
+    handleChange,
+    searchCountry,
+    handleRegionChange,
+    region,
+  } = ctx;
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (props.selectRegion) {
-      return navigate(`/region/${props.selectRegion}`);
+    if (region) {
+      return navigate(`/region/${region}`);
     }
-  }, [props.selectRegion, navigate]);
+  }, [region, navigate]);
 
   return (
     <Container>
       <div className="search">
-        <div
-          className={`${
-            props.darkMode ? "bg-input text-light" : "bg-white"
-          } search--left`}
-        >
-          <input
-            type="text"
-            name=""
-            id=""
+        <form onSubmit={handleSubmit}>
+          <div
             className={`${
               props.darkMode ? "bg-input text-light" : "bg-white"
-            } searchControl`}
-            value={props.searchCountry}
-            onChange={(e) => {
-              props.setSearchCountry(e.target.value);
-            }}
-            placeholder="Search Country..."
-          />
-          <BiSearch
-            fontSize={24}
-            style={{ marginRight: "12PX", opacity: "0.4", cursor: "pointer" }}
-          />
-        </div>
+            } search--left`}
+          >
+            <input
+              type="text"
+              name=""
+              id=""
+              className={`${
+                props.darkMode ? "bg-input text-light" : "bg-white"
+              } searchControl`}
+              value={searchCountry}
+              onChange={handleChange}
+              placeholder="Search Country..."
+            />
+            <BiSearch
+              fontSize={24}
+              style={{ marginRight: "12px", opacity: "0.4", cursor: "pointer" }}
+            />
+          </div>
+        </form>
         <div
           className={`${
             props.darkMode ? "bg-input text-light" : "bg-white"
@@ -57,8 +64,8 @@ const Searchbar = (props: SearchProps) => {
             className={`${
               props.darkMode ? "bg-input text-light" : "bg-white"
             } select-country`}
-            value={props.selectRegion}
-            onChange={(e) => props.setSelectRegion(e.target.value)}
+            value={region}
+            onChange={handleRegionChange}
           >
             <option defaultValue="">Select Region</option>
             <option value="africa">Africa</option>
